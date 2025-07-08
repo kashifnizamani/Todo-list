@@ -1,2 +1,3 @@
-# Template
-    template repository for initial project setup.
+# Todo-list
+   a basic Todo app 
+    

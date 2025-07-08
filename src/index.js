@@ -1,3 +1,5 @@
 import "./style.css";
+import Project from "./projects";
 
-console.log("hellowoer")
+const first = new Project("Default");
+
