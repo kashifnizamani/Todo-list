@@ -1,8 +1,35 @@
-*{
+html{
 
-    background-color: green;
+   background-color: rgb(55, 87, 190);
 }
-
 h1{
     color: white;
+}
+
+.container{
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 1fr 2fr;
+place-content: center;
+}
+
+.sidebar{
+   border: 1px solid black;
+    grid-column: 1 / 2;
+  
+}
+.main_content{
+    
+    border: 1px solid black;
+    grid-column: 2 / 3;
+
+
+}
+
+button{
+
+    border-radius: 50px;
+    background-color: lightcoral;
+    color: white;
+    font-size: 20px;
 }

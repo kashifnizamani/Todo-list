@@ -3,20 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo-List</title>
 </head>
 <body>
-    <h1>To-Do List</h1>
+    <h1 class="title">To-Do List</h1>
 
-    <div class="sidebar">
-        <h2 class="project_heading">Projects</h2>
-        <button class="add_project">Add +</button>
+
+    <div class="container">
+    
+        <div class="sidebar">
+            <h1 class="project_heading">Projects</h1>
+            <button class="add_project">Add +</button>
+        </div>
+
+        <div class="main_content">
+            <h1 class="main_heading">Todos</h1>
+            <button class="add_todo">+</button>
+        </div>
     </div>
 
-    <div class="main_content">
-        <h1 class="main_heading">Todos</h1>
-        <button class="add_todo">+</button>
-    </div>
+    <dialog class="addproject">
+        <button class="closeButton">X</button>
+        <form action="#" method="dialog">
+
+            <label for="name" >Name:</label>
+            <input type="text" name="name" id="name">
+
+            <button class="submit">submit</button>
+    </dialog>
+
+    <dialog class="addtodo">
+        <button class="closeButton">X</button>
+        <form action="#" method="dialog">
+
+            <label for="title" >title:</label>
+            <input type="text" name="title" id="title">
+
+            <label for="dueDate">due-date:</label>
+            <input type="date" name="dueDate" id="dueDate">
+            
+
+            <button class="submit">submit</button>
+            
+            
+        </form>
+    </dialog>
     
 </body>
 </html>
