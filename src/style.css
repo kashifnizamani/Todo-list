@@ -56,3 +56,13 @@ dialog{
 dialog:not([open]){
   display:none;
 }
+
+.project_item{
+    color: white;
+    border: 1px solid white;
+}
+
+.project_item:hover{
+
+    background-color: darkblue;
+}
