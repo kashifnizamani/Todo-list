@@ -2,6 +2,7 @@ import todo_item from "./todos.js";
 
  export default class Projects {
   constructor(name) {
+    this.id = crypto.randomUUID();
     this.name = name;
     this.todos = [];
   }

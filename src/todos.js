@@ -1,6 +1,6 @@
 export default class todo_items{
     constructor(title, dueDate, description, priority){
-        this.ID = crypto.randomUUID;
+        this.ID = crypto.randomUUID();
         this.title = title;
         this.dueDate = dueDate;
         this.description = description;

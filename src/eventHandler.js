@@ -8,7 +8,9 @@ const close_dialog = document.querySelectorAll(".close");
 const submit_dialog = document.querySelectorAll(".submit")
 
 const sidebar = document.querySelector(".sidebar");
-const activeClass = "active"; 
+const activeClass = "active";
+
+const project_list = [];
 
 
 
@@ -48,10 +50,25 @@ submit_dialog.forEach((e)=>{
 
             if(e.target.classList[1] === "project"){
             const name = document.querySelector("#name");
+            const project = new Project(name.value);
+            project_list.push(project);
             project_dialog.close();
-            displayProjects(new Project(name.value));
+            displayProjects(project);
             }
             else{
+              
+           const current_project = document.querySelector(".project_item.active");
+           project_list.forEach((e)=>{
+              
+            if(e.id === current_project.getAttribute("data-id")){
+                console.log(true);
+                todo_dialog.close()
+
+                //compare data id to get the correct project and then make todos in it
+            }
+
+           })
+            
 
             }
 
