@@ -13,27 +13,27 @@
     
         <div class="sidebar">
             <h1 class="project_heading">Projects</h1>
-            <button class="add_project">Add +</button>
+            <button class="add project">Add +</button>
         </div>
 
         <div class="main_content">
             <h1 class="main_heading">Todos</h1>
-            <button class="add_todo">+</button>
+            <button class="add todo">+</button>
         </div>
     </div>
 
-    <dialog class="addproject">
-        <button class="closeButton">X</button>
+    <dialog class="projects">
+        <button class="close project">X</button>
         <form action="#" method="dialog">
 
             <label for="name" >Name:</label>
             <input type="text" name="name" id="name">
 
-            <button class="submit">submit</button>
+            <button class="submit project">submit</button>
     </dialog>
 
-    <dialog class="addtodo">
-        <button class="closeButton">X</button>
+    <dialog class="todos">
+        <button class="close todo">X</button>
         <form action="#" method="dialog">
 
             <label for="title" >title:</label>
@@ -41,9 +41,20 @@
 
             <label for="dueDate">due-date:</label>
             <input type="date" name="dueDate" id="dueDate">
+
+            <label for="description">Description: </label>
+            <textarea name="description" id="description">text</textarea>
+
+            <select name="priority" id="priority">
+
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+
+            </select>
             
 
-            <button class="submit">submit</button>
+            <button class="submit todo">submit</button>
             
             
         </form>
