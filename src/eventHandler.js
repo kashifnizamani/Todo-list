@@ -1,4 +1,4 @@
-import { displayProjects } from "./DOM";
+import { displayProjects, project_list, displaytodos } from "./DOM";
 import Project from "./projects";
 
 const add_btn = document.querySelectorAll(".add");
@@ -7,10 +7,10 @@ const todo_dialog = document.querySelector(".todos");
 const close_dialog = document.querySelectorAll(".close");
 const submit_dialog = document.querySelectorAll(".submit")
 
-const sidebar = document.querySelector(".sidebar");
+const sidebar = document.querySelector(".projectList");
 const activeClass = "active";
 
-const project_list = [];
+
 
 
 
@@ -51,18 +51,24 @@ submit_dialog.forEach((e)=>{
             if(e.target.classList[1] === "project"){
             const name = document.querySelector("#name");
             const project = new Project(name.value);
-            project_list.push(project);
             project_dialog.close();
             displayProjects(project);
             }
             else{
               
            const current_project = document.querySelector(".project_item.active");
+           console.log(current_project);
+           console.log(project_list)
+           const title = document.querySelector("#title");
+           const dueDate = document.querySelector("#dueDate");
+           const description = document.querySelector("#description");
+           const priority = document.querySelector("#priority")
            project_list.forEach((e)=>{
-              
+            
             if(e.id === current_project.getAttribute("data-id")){
-                console.log(true);
+               const todo = e.createTodo(title.value, dueDate.value, description.value, priority.value);
                 todo_dialog.close()
+                displaytodos(e.todos);
 
                 //compare data id to get the correct project and then make todos in it
             }
@@ -90,6 +96,10 @@ sidebar.addEventListener("click", (event) => {
 
   // Added 'active' to the clicked one
   clicked.classList.add(activeClass);
-  console.log("hello");
+  project_list.forEach((element)=>{
+    if(element.id === clicked.getAttribute("data-id"));
+       displaytodos(element.todos);
+  })
+  
 });
 
