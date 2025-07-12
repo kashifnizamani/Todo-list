@@ -1,6 +1,6 @@
 import todo_item from "./todos.js";
 
- export default class Projects {
+export default class Projects {
   constructor(name) {
     this.id = crypto.randomUUID();
     this.name = name;
@@ -13,19 +13,11 @@ import todo_item from "./todos.js";
     this.todos.push(todo);
   }
 
-  deleteTodo(ID){
-
-    for(let i = 0; i < this.todos.length; i++){
-
-      if(this.todos[i].ID === ID){
+  deleteTodo(ID) {
+    for (let i = 0; i < this.todos.length; i++) {
+      if (this.todos[i].id === ID) {
         this.todos.splice(i, 1);
       }
-
-    }
-      
     }
   }
-
-
-
-
+}

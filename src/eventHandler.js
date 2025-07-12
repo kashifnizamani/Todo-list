@@ -1,19 +1,18 @@
 import {
-
   openDialog,
   closeDialog,
   createDOMproject,
   createDOMtodo,
   setActiveProject,
+  removeTodo,
+  editTodo,
 } from "./DOM";
-
 
 const add_btn = document.querySelectorAll(".add");
 const close_dialog = document.querySelectorAll(".close");
 const submit_dialog = document.querySelectorAll(".submit");
-
 const sidebar = document.querySelector(".projectList");
-
+const mainContent = document.querySelector(".main_content")
 
 add_btn.forEach((e) => {
   e.addEventListener("click", (e) => {
@@ -39,8 +38,9 @@ submit_dialog.forEach((e) => {
   });
 });
 
-
 sidebar.addEventListener("click", (event) => {
-    
   setActiveProject(event);
 });
+
+
+

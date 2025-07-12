@@ -1,8 +1,9 @@
+
+
 import Project from "./projects";
 
 const sidebar = document.querySelector(".projectList");
 const main_content = document.querySelector(".todoList");
-
 const project_dialog = document.querySelector(".projects");
 const todo_dialog = document.querySelector(".todos");
 
@@ -25,7 +26,15 @@ export function displaytodos(todos) {
 
   todos.forEach((element) => {
     const todo = document.createElement("div");
+    const removebtn = document.createElement("button");
+    const editbtn = document.createElement("button");
+    editbtn.textContent = "Edit";
+    editbtn.classList.add("edit");
+    removebtn.textContent = "X";
+    todo.setAttribute("data-id", element.id)
     todo.classList.add("todo_item");
+    removebtn.classList.add("remove");
+
     todo.innerHTML =
       "<h2>" +
       element.title +
@@ -34,6 +43,9 @@ export function displaytodos(todos) {
       element.description +
       "</div> <br>" +
       element.dueDate;
+
+      todo.appendChild(removebtn);
+      todo.appendChild(editbtn);
     main_content.appendChild(todo);
   });
 }
@@ -52,7 +64,7 @@ export function getActiveProject() {
   const current_project = document.querySelector(".project_item.active");
   const currentId = current_project.getAttribute("data-id");
 
-  const project = project_list.find((p) => p.id === currentId); 
+  const project = project_list.find((p) => p.id === currentId);
   return project;
 }
 
@@ -71,12 +83,13 @@ export function createDOMtodo() {
 
   const activeProject = getActiveProject();
 
-  getActiveProject().createTodo(
+  activeProject.createTodo(
     title.value,
     dueDate.value,
     description.value,
     priority.value
   );
+
   todo_dialog.close();
   displaytodos(activeProject.todos);
 }
@@ -96,4 +109,35 @@ export function setActiveProject(event) {
     if (element.id === clicked.getAttribute("data-id"))
       displaytodos(element.todos);
   });
+}
+
+export function removeTodo(event){
+
+  const clicked = event.target.closest(".remove");
+  if(!clicked)
+    return;
+
+  const id = clicked.parentNode.getAttribute("data-id");
+  clicked.parentNode.remove();
+  
+  getActiveProject().deleteTodo(id);
+  
+
+}
+
+export function editTodo(event){
+  const clicked = event.target.closest(".edit");
+  if(!clicked)
+    return;
+
+  todo_dialog.classList.add("edit");
+
+  get_edit_dialog(clicked.parentNode);
+
+}
+
+function get_edit_dialog(clickedTodo){
+
+  
+
 }
