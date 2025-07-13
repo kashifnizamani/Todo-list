@@ -130,14 +130,73 @@ export function editTodo(event){
   if(!clicked)
     return;
 
-  todo_dialog.classList.add("edit");
+  todo_dialog.classList.add("edit_todo");
 
-  get_edit_dialog(clicked.parentNode);
+  const clickedID = clicked.parentNode.getAttribute("data-id");
+
+    getActiveProject().todos.forEach((element)=>{
+
+      if(element.id === clickedID){
+       get_edit_dialog(element);
+       // ons submit button click remove edit class and add logic of editing a todo
+      
+      }
+      
+
+      
+      
+    })
+    
+  
+  
 
 }
 
 function get_edit_dialog(clickedTodo){
 
+    
+
+   const clicked_title =  document.querySelector("#title").value = clickedTodo.title;
+   const clicked_dueDate = document.querySelector("#dueDate").value = clickedTodo.dueDate;
+   const clicked_description = document.querySelector("#description").value = clickedTodo.description;
+   const clicked_priority = document.querySelector("#priority").value = clickedTodo.priority;
+   console.log(clicked_description);
+      
+   todo_dialog.setAttribute("data-id", clickedTodo.id)
   
+    todo_dialog.showModal();
+
+}
+
+export function editDOMtodo(){
+
+   const dialog = document.querySelector(".edit_todo");
+  const todoID = dialog.getAttribute("data-id");
+
+  const updatedTitle = dialog.querySelector("#title").value;
+  const updatedDueDate = dialog.querySelector("#dueDate").value;
+  const updatedDescription = dialog.querySelector("#description").value;
+  const updatedPriority = dialog.querySelector("#priority").value;
+
+  const activeProject = getActiveProject();
+  console.log(activeProject);
+  activeProject.todos.forEach(todoToEdit => {
+
+    if (todoToEdit.id === todoID) {
+    console.log("todo selected")
+    todoToEdit.title = updatedTitle;
+    todoToEdit.dueDate = updatedDueDate;
+    todoToEdit.description = updatedDescription;
+    todoToEdit.priority = updatedPriority;
+  }
+    
+    
+  });
+  
+
+  
+
+  dialog.close();
+  displaytodos(activeProject.todos);
 
 }

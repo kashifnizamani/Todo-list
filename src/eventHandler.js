@@ -6,6 +6,7 @@ import {
   setActiveProject,
   removeTodo,
   editTodo,
+  editDOMtodo,
 } from "./DOM";
 
 const add_btn = document.querySelectorAll(".add");
@@ -28,9 +29,15 @@ close_dialog.forEach((e) => {
 
 submit_dialog.forEach((e) => {
   e.addEventListener("click", (e) => {
+    console.log(e.target.parentNode);
     e.preventDefault();
 
-    if (e.target.classList[1] === "project") {
+    if(e.target.parentNode.classList[1] === "edit_todo"){
+      editDOMtodo();
+      e.target.parentNode.classList.remove("edit_todo");
+
+    }
+    else if (e.target.classList[1] === "project") {
       createDOMproject();
     } else {
       createDOMtodo();
@@ -41,6 +48,13 @@ submit_dialog.forEach((e) => {
 sidebar.addEventListener("click", (event) => {
   setActiveProject(event);
 });
+
+mainContent.addEventListener("click", (e)=>{
+
+  removeTodo(e);
+  editTodo(e);
+
+})
 
 
 
