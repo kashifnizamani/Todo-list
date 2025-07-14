@@ -1,4 +1,5 @@
 import "./style.css";
+import "./sidebar.css";
 import Project from "./projects";
 import "./eventHandler";
 import { displayProjects } from "./DOM";

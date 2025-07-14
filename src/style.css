@@ -5,9 +5,12 @@
 
 html {
   background-color: rgb(55, 87, 190);
+  
+
 }
 h1 {
   color: white;
+  font-size: 2rem;
 }
 
 .container {
@@ -17,12 +20,11 @@ h1 {
   place-content: center;
 }
 
-.sidebar {
-  border: 1px solid black;
-  grid-column: 1 / 2;
-}
+
+
 .main_content {
-  border: 1px solid black;
+  
+  
   grid-column: 2 / 3;
 }
 
@@ -49,15 +51,6 @@ dialog {
 
 dialog:not([open]) {
   display: none;
-}
-
-.project_item {
-  color: white;
-  border: 1px solid white;
-}
-
-.project_item:hover {
-  background-color: darkblue;
 }
 
 .todo_item {

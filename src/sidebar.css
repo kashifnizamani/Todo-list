@@ -1,0 +1,39 @@
+.sidebar {
+  display: grid;
+  border-right: 1px solid black;
+  grid-template-columns: 1fr, 1fr;
+  grid-column: 1 / 2;
+}
+.project_heading{
+  grid-column: 1 / 2;
+ 
+}
+.add.project{
+  grid-column: 2 / 3;
+  width: 100px;
+  border-radius: 10px;
+  height: fit-content;
+  place-self: center;
+}
+
+.projectList{
+  grid-column: 1 / 3;
+  height: fit-content;
+  
+}
+
+.project_item {
+  color: white;
+   border: 1px solid white;
+   border-radius: 10px;
+   padding-left: 10px;
+   margin: 10px;
+}
+.project_item.active{
+
+   background-color: darkblue;
+}
+
+.project_item:hover {
+  background-color: darkblue;
+}

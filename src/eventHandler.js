@@ -7,6 +7,7 @@ import {
   removeTodo,
   editTodo,
   editDOMtodo,
+  toggle_isDonevalue,
 } from "./DOM";
 
 const add_btn = document.querySelectorAll(".add");
@@ -39,8 +40,10 @@ submit_dialog.forEach((e) => {
     }
     else if (e.target.classList[1] === "project") {
       createDOMproject();
+
     } else {
       createDOMtodo();
+      
     }
   });
 });
@@ -53,6 +56,7 @@ mainContent.addEventListener("click", (e)=>{
 
   removeTodo(e);
   editTodo(e);
+  toggle_isDonevalue(e);
 
 })
 

@@ -8,10 +8,15 @@ export default class todo_items {
     this.isDone = false;
   }
 
-  set isDone(value) {
-    this._isDone = value;
-  }
+ 
+ toggle_isDone(){
+  this.isDone = !this.isDone;
+ }
+
   set priority(value) {
     this._priority = value;
   }
+  get priority() {
+  return this._priority;
+}
 }

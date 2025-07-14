@@ -28,6 +28,7 @@ export function displaytodos(todos) {
     const todo = document.createElement("div");
     const removebtn = document.createElement("button");
     const editbtn = document.createElement("button");
+    const isDoneCheck = todoCheckbox();
     editbtn.textContent = "Edit";
     editbtn.classList.add("edit");
     removebtn.textContent = "X";
@@ -42,10 +43,11 @@ export function displaytodos(todos) {
       "<div>" +
       element.description +
       "</div> <br>" +
-      element.dueDate;
+      element.dueDate + element.priority;
 
       todo.appendChild(removebtn);
       todo.appendChild(editbtn);
+      todo.appendChild(isDoneCheck);
     main_content.appendChild(todo);
   });
 }
@@ -69,6 +71,7 @@ export function getActiveProject() {
 }
 
 export function createDOMproject() {
+
   const name = document.querySelector("#name");
   const project = new Project(name.value);
   project_dialog.close();
@@ -76,11 +79,12 @@ export function createDOMproject() {
 }
 
 export function createDOMtodo() {
+  
   const title = document.querySelector("#title");
   const dueDate = document.querySelector("#dueDate");
   const description = document.querySelector("#description");
   const priority = document.querySelector("#priority");
-
+  console.log(document.querySelector("#testbox").checked);
   const activeProject = getActiveProject();
 
   activeProject.createTodo(
@@ -138,7 +142,7 @@ export function editTodo(event){
 
       if(element.id === clickedID){
        get_edit_dialog(element);
-       // ons submit button click remove edit class and add logic of editing a todo
+       
       
       }
       
@@ -156,10 +160,10 @@ function get_edit_dialog(clickedTodo){
 
     
 
-   const clicked_title =  document.querySelector("#title").value = clickedTodo.title;
-   const clicked_dueDate = document.querySelector("#dueDate").value = clickedTodo.dueDate;
-   const clicked_description = document.querySelector("#description").value = clickedTodo.description;
-   const clicked_priority = document.querySelector("#priority").value = clickedTodo.priority;
+   document.querySelector("#title").value = clickedTodo.title;
+   document.querySelector("#dueDate").value = clickedTodo.dueDate;
+   document.querySelector("#description").value = clickedTodo.description;
+   document.querySelector("#priority").value = clickedTodo.priority;
    console.log(clicked_description);
       
    todo_dialog.setAttribute("data-id", clickedTodo.id)
@@ -198,5 +202,37 @@ export function editDOMtodo(){
 
   dialog.close();
   displaytodos(activeProject.todos);
+
+}
+
+function todoCheckbox(){
+
+      const checkbox = document.createElement('input');
+      checkbox.la
+      checkbox.type = 'checkbox';
+      checkbox.id = 'isDone';
+      checkbox.name = 'isDone';
+      checkbox.checked = false; 
+      return checkbox;
+
+}
+
+export function toggle_isDonevalue(event){
+  
+  const clicked = event.target.closest("#isDone");
+  if(!clicked) return;
+
+ 
+  const todoID = clicked.parentNode.getAttribute("data-id");
+  const activeProject = getActiveProject();
+  activeProject.todos.forEach((e)=>{
+    if(e.id === todoID){
+
+      e.toggle_isDone();
+    
+
+    }
+      
+  })
 
 }
