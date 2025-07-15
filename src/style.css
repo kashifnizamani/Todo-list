@@ -5,8 +5,6 @@
 
 html {
   background-color: rgb(55, 87, 190);
-  
-
 }
 h1 {
   color: white;
@@ -15,50 +13,14 @@ h1 {
 
 .container {
   display: grid;
-  gap: 5px;
+  gap: 10px;
   grid-template-columns: 1fr 2fr;
-  place-content: center;
-}
-
-
-
-.main_content {
   
   
-  grid-column: 2 / 3;
 }
 
 button {
-  border-radius: 50px;
   background-color: lightcoral;
-  color: white;
+
   font-size: 20px;
 }
-
-dialog {
-  width: 50%;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-}
-.submit {
-  width: 100px;
-  justify-self: center;
-  background-color: #6ab5ff;
-  border-radius: 10px;
-  font-weight: bolder;
-}
-
-dialog:not([open]) {
-  display: none;
-}
-
-.todo_item {
-  color: white;
-  border: 1px solid white;
-  margin: 10px;
-  
-}
-
-
-

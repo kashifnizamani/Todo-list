@@ -29,25 +29,30 @@ export function displaytodos(todos) {
     const removebtn = document.createElement("button");
     const editbtn = document.createElement("button");
     const isDoneCheck = todoCheckbox();
+    isDoneCheck.classList.add("check_isDone")
     editbtn.textContent = "Edit";
-    editbtn.classList.add("edit");
+    editbtn.classList.add("editTodo");
     removebtn.textContent = "X";
     todo.setAttribute("data-id", element.id)
     todo.classList.add("todo_item");
-    removebtn.classList.add("remove");
+    removebtn.classList.add("removeTodo");
 
-    todo.innerHTML =
-      "<h2>" +
+    
+
+      const span = document.createElement("span");
+      span.innerHTML  =
+      "<div><h2>" +
       element.title +
       "</h2>" +
       "<div>" +
-      element.description +
-      "</div> <br>" +
-      element.dueDate + element.priority;
+      element.dueDate +
+      "</div> </div>";
 
-      todo.appendChild(removebtn);
+      todo.prepend(removebtn);
+      
+      span.appendChild(isDoneCheck);
+      todo.appendChild(span)
       todo.appendChild(editbtn);
-      todo.appendChild(isDoneCheck);
     main_content.appendChild(todo);
   });
 }
@@ -84,8 +89,18 @@ export function createDOMtodo() {
   const dueDate = document.querySelector("#dueDate");
   const description = document.querySelector("#description");
   const priority = document.querySelector("#priority");
-  console.log(document.querySelector("#testbox").checked);
   const activeProject = getActiveProject();
+
+    if (!title.checkValidity()) {
+    title.reportValidity(); // 
+    return;
+  }
+   else if (!dueDate.checkValidity()) {
+    dueDate.reportValidity(); 
+    return;
+  }
+
+  
 
   activeProject.createTodo(
     title.value,
@@ -117,9 +132,11 @@ export function setActiveProject(event) {
 
 export function removeTodo(event){
 
-  const clicked = event.target.closest(".remove");
+  const clicked = event.target.closest(".removeTodo");
   if(!clicked)
     return;
+
+  console.log("X clicked")
 
   const id = clicked.parentNode.getAttribute("data-id");
   clicked.parentNode.remove();
@@ -130,7 +147,7 @@ export function removeTodo(event){
 }
 
 export function editTodo(event){
-  const clicked = event.target.closest(".edit");
+  const clicked = event.target.closest(".editTodo");
   if(!clicked)
     return;
 
@@ -164,7 +181,8 @@ function get_edit_dialog(clickedTodo){
    document.querySelector("#dueDate").value = clickedTodo.dueDate;
    document.querySelector("#description").value = clickedTodo.description;
    document.querySelector("#priority").value = clickedTodo.priority;
-   console.log(clicked_description);
+   
+   
       
    todo_dialog.setAttribute("data-id", clickedTodo.id)
   
@@ -187,7 +205,6 @@ export function editDOMtodo(){
   activeProject.todos.forEach(todoToEdit => {
 
     if (todoToEdit.id === todoID) {
-    console.log("todo selected")
     todoToEdit.title = updatedTitle;
     todoToEdit.dueDate = updatedDueDate;
     todoToEdit.description = updatedDescription;
@@ -223,7 +240,7 @@ export function toggle_isDonevalue(event){
   if(!clicked) return;
 
  
-  const todoID = clicked.parentNode.getAttribute("data-id");
+  const todoID = clicked.parentNode.parentNode.getAttribute("data-id");
   const activeProject = getActiveProject();
   activeProject.todos.forEach((e)=>{
     if(e.id === todoID){
@@ -236,3 +253,4 @@ export function toggle_isDonevalue(event){
   })
 
 }
+

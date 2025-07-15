@@ -1,9 +1,17 @@
 import "./style.css";
-import "./sidebar.css";
-import Project from "./projects";
-import "./eventHandler";
-import { displayProjects } from "./DOM";
+import "./styles/sidebar.css";
+import "./styles/main_content.css";
+import "./styles/dialog.css";
+import "./styles/todos.css";
+import Project from "./modules/projects";
+import "./modules/eventHandler";
+import { displayProjects, displaytodos } from "./modules/DOM";
 
 const first = new Project("Default");
 
+first.createTodo("default Todo", "noDate", "placeholder todo at first load", "low");
+
+
 displayProjects(first);
+
+displaytodos(first.todos);
