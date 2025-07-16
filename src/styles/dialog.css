@@ -5,6 +5,8 @@ dialog {
   gap: 10px;
   font-size: 20px;
   border-radius: 10px;
+  background-color: #2c2c3e;
+  
 }
 .submit {
   width: 100px;
@@ -42,4 +44,17 @@ select{
 .close{
   justify-self: end;
   border-radius: 100px;
+  background-color: #f56565;
 }
+
+input, select, textarea{
+  color: black;
+}
+
+.project_form{
+  display: grid;
+  
+ 
+  gap: 10px;
+}
+

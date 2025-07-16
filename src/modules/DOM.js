@@ -23,6 +23,12 @@ export function displayProjects(project) {
 
 export function displaytodos(todos) {
   main_content.innerHTML = "";
+  if(todos.length == 0){
+    const div = document.createElement("div");
+    div.textContent = "No todos in this Project";
+    div.classList.add("No_todos");
+    main_content.append(div);
+  }
 
   todos.forEach((element) => {
     const todo = document.createElement("div");
@@ -78,9 +84,16 @@ export function getActiveProject() {
 export function createDOMproject() {
 
   const name = document.querySelector("#name");
+
+   if (!name.checkValidity()) {
+    name.reportValidity(); 
+    return;
+  }
+  else{
   const project = new Project(name.value);
   project_dialog.close();
   displayProjects(project);
+  }
 }
 
 export function createDOMtodo() {
@@ -142,6 +155,7 @@ export function removeTodo(event){
   clicked.parentNode.remove();
   
   getActiveProject().deleteTodo(id);
+  displaytodos(getActiveProject().todos);
   
 
 }

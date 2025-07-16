@@ -1,20 +1,27 @@
 .main_content {
-  
-    background-color: blue;
-    display: grid;
+  background-color: #2c2c3e;
+   
   grid-column: 2 / 3;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-  align-self: start;
+
+  
+  align-self: stretch;
 }
 
-.main_heading{
-    grid-column: 1 / 2;
-    
-}
+
 .add.todo{
     grid-column: 2 / 3;
-    width: 2rem;
-    height: 2rem;
-    place-self: center;
+    width: fit-content;
+    height: 3rem;
+    border-radius: 10px;
+    font-size: 25px;
+    background-color:cyan;
+    
+    color: black;
 }
+
+.main_content .wrapper{
+  display: flex;
+  justify-content: space-around;
+
+}
+

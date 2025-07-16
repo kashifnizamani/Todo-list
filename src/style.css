@@ -1,26 +1,55 @@
 * {
   box-sizing: border-box;
   font-family: "Times New Roman", Times, serif;
+  color: #ffffff;
 }
 
+
 html {
-  background-color: rgb(55, 87, 190);
+    background-color: #12121b;
 }
 h1 {
   color: white;
   font-size: 2rem;
 }
 
+.title{
+
+  grid-column: 1 / 3;
+  width: 100%;
+  height: 70px;
+  margin: 0px;
+  padding: 10px;
+  padding-left: 100px;
+  color: black;
+
+  background-color: wheat;
+  
+ 
+  
+
+}
+
 .container {
   display: grid;
   gap: 10px;
   grid-template-columns: 1fr 2fr;
+
+ 
   
   
 }
 
 button {
-  background-color: lightcoral;
+  background-color: #4fd1c4;
+  border: none;
+
 
   font-size: 20px;
 }
+
+#name{
+  width: 100%;
+}
+
+

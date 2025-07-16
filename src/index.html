@@ -6,22 +6,27 @@
     <title>Todo-List</title>
 </head>
 <body>
-    <h1 class="title">To-Do List</h1>
+
 
 
     <div class="container">
+            <h1 class="title">To-Do List</h1>
     
         <div class="sidebar">
-            <h1 class="project_heading">Projects</h1>
-            <button class="add project">Add +</button>
+            <span class="wrapper">
+                <h1 class="project_heading">Projects</h1>
+                <button class="add project">+</button>
+            </span>
             <div class="projectList">
                 
             </div>
         </div>
 
         <div class="main_content" >
-            <h1 class="main_heading">Todos</h1>
-            <button class="add todo">+</button>
+            <span class="wrapper">
+                <h1 class="main_heading">Todos</h1>
+                <button class="add todo">Add Todo +</button>
+            </span>
             <div class="todoList">
 
             </div>
@@ -33,7 +38,7 @@
         <form action="#" method="dialog" class="project_form">
 
             <label for="name" >Name:</label>
-            <input type="text" name="name" id="name">
+            <input type="text" name="name" id="name" required>
 
             <button class="submit project">submit</button>
     </dialog>
