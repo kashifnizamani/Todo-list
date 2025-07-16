@@ -1,27 +1,23 @@
 .main_content {
   background-color: #2c2c3e;
-   
+
   grid-column: 2 / 3;
 
-  
   align-self: stretch;
 }
 
+.add.todo {
+  grid-column: 2 / 3;
+  width: fit-content;
+  height: 3rem;
+  border-radius: 10px;
+  font-size: 25px;
+  background-color: cyan;
 
-.add.todo{
-    grid-column: 2 / 3;
-    width: fit-content;
-    height: 3rem;
-    border-radius: 10px;
-    font-size: 25px;
-    background-color:cyan;
-    
-    color: black;
+  color: black;
 }
 
-.main_content .wrapper{
+.main_content .wrapper {
   display: flex;
   justify-content: space-around;
-
 }
-

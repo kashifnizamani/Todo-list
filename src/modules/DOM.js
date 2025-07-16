@@ -1,5 +1,3 @@
-
-
 import Project from "./projects";
 
 const sidebar = document.querySelector(".projectList");
@@ -10,6 +8,7 @@ const todo_dialog = document.querySelector(".todos");
 const activeClass = "active";
 
 export const project_list = [];
+
 
 export function displayProjects(project) {
   project_list.push(project);
@@ -23,7 +22,7 @@ export function displayProjects(project) {
 
 export function displaytodos(todos) {
   main_content.innerHTML = "";
-  if(todos.length == 0){
+  if (todos.length == 0) {
     const div = document.createElement("div");
     div.textContent = "No todos in this Project";
     div.classList.add("No_todos");
@@ -32,21 +31,20 @@ export function displaytodos(todos) {
 
   todos.forEach((element) => {
     const todo = document.createElement("div");
+    getPriority(element, todo);
     const removebtn = document.createElement("button");
     const editbtn = document.createElement("button");
     const isDoneCheck = todoCheckbox();
-    isDoneCheck.classList.add("check_isDone")
+    isDoneCheck.classList.add("check_isDone");
     editbtn.textContent = "Edit";
     editbtn.classList.add("editTodo");
     removebtn.textContent = "X";
-    todo.setAttribute("data-id", element.id)
+    todo.setAttribute("data-id", element.id);
     todo.classList.add("todo_item");
     removebtn.classList.add("removeTodo");
 
-    
-
-      const span = document.createElement("span");
-      span.innerHTML  =
+    const span = document.createElement("span");
+    span.innerHTML =
       "<div><h2>" +
       element.title +
       "</h2>" +
@@ -54,11 +52,11 @@ export function displaytodos(todos) {
       element.dueDate +
       "</div> </div>";
 
-      todo.prepend(removebtn);
-      
-      span.appendChild(isDoneCheck);
-      todo.appendChild(span)
-      todo.appendChild(editbtn);
+    todo.prepend(removebtn);
+
+    span.appendChild(isDoneCheck);
+    todo.appendChild(span);
+    todo.appendChild(editbtn);
     main_content.appendChild(todo);
   });
 }
@@ -82,38 +80,32 @@ export function getActiveProject() {
 }
 
 export function createDOMproject() {
-
   const name = document.querySelector("#name");
 
-   if (!name.checkValidity()) {
-    name.reportValidity(); 
+  if (!name.checkValidity()) {
+    name.reportValidity();
     return;
-  }
-  else{
-  const project = new Project(name.value);
-  project_dialog.close();
-  displayProjects(project);
+  } else {
+    const project = new Project(name.value);
+    project_dialog.close();
+    displayProjects(project);
   }
 }
 
 export function createDOMtodo() {
-  
   const title = document.querySelector("#title");
   const dueDate = document.querySelector("#dueDate");
   const description = document.querySelector("#description");
   const priority = document.querySelector("#priority");
   const activeProject = getActiveProject();
 
-    if (!title.checkValidity()) {
-    title.reportValidity(); // 
+  if (!title.checkValidity()) {
+    title.reportValidity(); //
+    return;
+  } else if (!dueDate.checkValidity()) {
+    dueDate.reportValidity();
     return;
   }
-   else if (!dueDate.checkValidity()) {
-    dueDate.reportValidity(); 
-    return;
-  }
-
-  
 
   activeProject.createTodo(
     title.value,
@@ -143,70 +135,47 @@ export function setActiveProject(event) {
   });
 }
 
-export function removeTodo(event){
-
+export function removeTodo(event) {
   const clicked = event.target.closest(".removeTodo");
-  if(!clicked)
-    return;
+  if (!clicked) return;
 
-  console.log("X clicked")
+  console.log("X clicked");
 
   const id = clicked.parentNode.getAttribute("data-id");
   clicked.parentNode.remove();
-  
+
   getActiveProject().deleteTodo(id);
   displaytodos(getActiveProject().todos);
-  
-
 }
 
-export function editTodo(event){
+export function editTodo(event) {
   const clicked = event.target.closest(".editTodo");
-  if(!clicked)
-    return;
+  if (!clicked) return;
 
   todo_dialog.classList.add("edit_todo");
 
   const clickedID = clicked.parentNode.getAttribute("data-id");
 
-    getActiveProject().todos.forEach((element)=>{
-
-      if(element.id === clickedID){
-       get_edit_dialog(element);
-       
-      
-      }
-      
-
-      
-      
-    })
-    
-  
-  
-
+  getActiveProject().todos.forEach((element) => {
+    if (element.id === clickedID) {
+      get_edit_dialog(element);
+    }
+  });
 }
 
-function get_edit_dialog(clickedTodo){
+function get_edit_dialog(clickedTodo) {
+  document.querySelector("#title").value = clickedTodo.title;
+  document.querySelector("#dueDate").value = clickedTodo.dueDate;
+  document.querySelector("#description").value = clickedTodo.description;
+  document.querySelector("#priority").value = clickedTodo.priority;
 
-    
+  todo_dialog.setAttribute("data-id", clickedTodo.id);
 
-   document.querySelector("#title").value = clickedTodo.title;
-   document.querySelector("#dueDate").value = clickedTodo.dueDate;
-   document.querySelector("#description").value = clickedTodo.description;
-   document.querySelector("#priority").value = clickedTodo.priority;
-   
-   
-      
-   todo_dialog.setAttribute("data-id", clickedTodo.id)
-  
-    todo_dialog.showModal();
-
+  todo_dialog.showModal();
 }
 
-export function editDOMtodo(){
-
-   const dialog = document.querySelector(".edit_todo");
+export function editDOMtodo() {
+  const dialog = document.querySelector(".edit_todo");
   const todoID = dialog.getAttribute("data-id");
 
   const updatedTitle = dialog.querySelector("#title").value;
@@ -214,57 +183,53 @@ export function editDOMtodo(){
   const updatedDescription = dialog.querySelector("#description").value;
   const updatedPriority = dialog.querySelector("#priority").value;
 
+
+  
+
   const activeProject = getActiveProject();
   console.log(activeProject);
-  activeProject.todos.forEach(todoToEdit => {
-
+  activeProject.todos.forEach((todoToEdit) => {
     if (todoToEdit.id === todoID) {
-    todoToEdit.title = updatedTitle;
-    todoToEdit.dueDate = updatedDueDate;
-    todoToEdit.description = updatedDescription;
-    todoToEdit.priority = updatedPriority;
-  }
-    
-    
+      todoToEdit.title = updatedTitle;
+      todoToEdit.dueDate = updatedDueDate;
+      todoToEdit.description = updatedDescription;
+      todoToEdit.priority = updatedPriority;
+    }
   });
-  
-
-  
 
   dialog.close();
   displaytodos(activeProject.todos);
-
 }
 
-function todoCheckbox(){
-
-      const checkbox = document.createElement('input');
-      checkbox.la
-      checkbox.type = 'checkbox';
-      checkbox.id = 'isDone';
-      checkbox.name = 'isDone';
-      checkbox.checked = false; 
-      return checkbox;
-
+function todoCheckbox() {
+  const checkbox = document.createElement("input");
+  checkbox.la;
+  checkbox.type = "checkbox";
+  checkbox.id = "isDone";
+  checkbox.name = "isDone";
+  checkbox.checked = false;
+  return checkbox;
 }
 
-export function toggle_isDonevalue(event){
-  
+export function toggle_isDonevalue(event) {
   const clicked = event.target.closest("#isDone");
-  if(!clicked) return;
+  if (!clicked) return;
 
- 
   const todoID = clicked.parentNode.parentNode.getAttribute("data-id");
   const activeProject = getActiveProject();
-  activeProject.todos.forEach((e)=>{
-    if(e.id === todoID){
-
+  activeProject.todos.forEach((e) => {
+    if (e.id === todoID) {
       e.toggle_isDone();
-    
-
     }
-      
-  })
-
+  });
 }
 
+function getPriority(todo, div) {
+  if (todo.priority === "high") {
+    div.style.cssText = "border-left: 10px solid red";
+  } else if (todo.priority === "low") {
+    div.style.cssText = "border-left: 10px solid green";
+  } else {
+    div.style.cssText = "border-left: 10px solid yellow";
+  }
+}

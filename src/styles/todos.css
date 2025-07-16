@@ -3,71 +3,58 @@
   border: 1px solid white;
   margin: 10px;
   border-radius: 10px;
-
-
 }
 
-.todo_item > button{
+.todo_item > button {
   margin: 10px;
 }
 
-.todoList{
-    grid-column: 1 / 3;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.todoList {
+  grid-column: 1 / 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
-    justify-self: stretch;
-    
+  justify-self: stretch;
 }
 
-span{
-    display: grid;
-    grid-auto-flow: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    
+span {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
 }
-#isDone{
-  
-   border: 1px solid white;
-    width: 20px;
-    height: 20px;
-    border-radius: 100px;
-    padding: 0;
-    left: 50px;
-
+#isDone {
+  border: 1px solid white;
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+  padding: 0;
+  left: 50px;
 }
-#isDone:checked{
+#isDone:checked {
   background-color: green;
 }
 
-.editTodo{
-    display: flex;
-    height: fit-content;
-    justify-self: end;
-    border-radius: 10px;
-    background-color: rgb(67, 67, 208);
-    border: none;
-
-    
-    
+.editTodo {
+  display: flex;
+  height: fit-content;
+  justify-self: end;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: rgb(67, 67, 208);
+  border: none;
 }
-.removeTodo{
-
-    background-color: #f56565;
-    justify-self: start;
-    height: fit-content;
-    border-radius: 100px;
-    border: none;
-    
+.removeTodo {
+  background-color: #f56565;
+  justify-self: start;
+  height: fit-content;
+  border-radius: 100px;
+  border: none;
 }
-.No_todos{
+.No_todos {
   grid-column: 1 / 3;
   font-size: 20px;
   place-self: center;
   margin-top: 100px;
-  
 }
-
-
