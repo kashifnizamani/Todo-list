@@ -6,21 +6,20 @@ import "./styles/todos.css";
 import Project from "./modules/projects";
 import "./modules/eventHandler";
 import { displayProjects, displaytodos } from "./modules/DOM";
-import { Storage } from "./modules/localStorage";
+import { project_list, Storage } from "./modules/localStorage";
 
-const first = new Project("Default");
-
-first.createTodo("default Todo", "noDate", "placeholder todo at first load", "medium");
-
- const saved = Storage.getProjects("projects");
+console.log(project_list);
 
 
-console.log(saved);
 
-displayProjects(first);
 
-displaytodos(first.todos);
+   
+    project_list.forEach(element => {
 
-checkStorageAvailability();
+        displayProjects(element);
+        displaytodos(element.todos);
+    });
+        
+   
 
-getProjects("projects");
+   

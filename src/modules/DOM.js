@@ -1,4 +1,6 @@
+import { Storage } from "./localStorage";
 import Project from "./projects";
+import { project_list } from "./localStorage";
 
 const sidebar = document.querySelector(".projectList");
 const main_content = document.querySelector(".todoList");
@@ -7,11 +9,10 @@ const todo_dialog = document.querySelector(".todos");
 
 const activeClass = "active";
 
-export const project_list = [];
-
 
 export function displayProjects(project) {
-  project_list.push(project);
+  
+
   const project_container = document.createElement("div");
   project_container.classList.add("project_item");
   project_container.setAttribute("data-id", project.id);
@@ -22,6 +23,7 @@ export function displayProjects(project) {
 
 export function displaytodos(todos) {
   main_content.innerHTML = "";
+  Storage.saveProjects(project_list);
   if (todos.length == 0) {
     const div = document.createElement("div");
     div.textContent = "No todos in this Project";
@@ -87,6 +89,8 @@ export function createDOMproject() {
     return;
   } else {
     const project = new Project(name.value);
+    project_list.push(project);
+    Storage.saveProjects(project_list);
     project_dialog.close();
     displayProjects(project);
   }
@@ -177,7 +181,7 @@ function get_edit_dialog(clickedTodo) {
 export function editDOMtodo() {
   const dialog = document.querySelector(".edit_todo");
   const todoID = dialog.getAttribute("data-id");
-
+  
   const updatedTitle = dialog.querySelector("#title").value;
   const updatedDueDate = dialog.querySelector("#dueDate").value;
   const updatedDescription = dialog.querySelector("#description").value;
@@ -194,6 +198,8 @@ export function editDOMtodo() {
       todoToEdit.dueDate = updatedDueDate;
       todoToEdit.description = updatedDescription;
       todoToEdit.priority = updatedPriority;
+      
+
     }
   });
 
