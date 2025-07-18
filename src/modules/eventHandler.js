@@ -9,6 +9,7 @@ import {
   editDOMtodo,
   toggle_isDonevalue,
 } from "./DOM";
+import { project_list, Storage } from "./localStorage";
 
 const add_btn = document.querySelectorAll(".add");
 const close_dialog = document.querySelectorAll(".close");
